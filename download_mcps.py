@@ -34,16 +34,40 @@ JAVA_MCPS = ["cedar-artifact-mcp", "cedar-artifact-rest-mcp", "cedar-cee-mcp"]
 def info(m): print(m, file=sys.stderr)
 
 
+def _human(n):
+    return f"{n / 1024 / 1024:.1f} MB" if n and n > 0 else "?"
+
+
 def download_jars(jar_dir):
     info(f"\nFetching latest MCP jars into {jar_dir}")
     info("--------------------------------")
     for r in JAVA_MCPS:
         url = f"https://github.com/metadatacenter/{r}/releases/latest/download/{r}.jar"
         dest, tmp = jar_dir / f"{r}.jar", jar_dir / f"{r}.jar.part"
-        info(f"  - {r}.jar")
         try:
-            with urllib.request.urlopen(url) as resp, open(tmp, "wb") as f:  # follows redirects
-                shutil.copyfileobj(resp, f)
+            # 30s socket timeout so a stalled connection fails fast instead of hanging silently.
+            with urllib.request.urlopen(url, timeout=30) as resp:  # follows redirects
+                total = int(resp.headers.get("Content-Length") or 0)
+                # Skip the transfer when the local jar already matches the remote size — turns a
+                # re-run into a near-instant no-op instead of re-pulling ~40 MB unconditionally.
+                if total and dest.exists() and dest.stat().st_size == total:
+                    info(f"  - {r}.jar ({_human(total)}) up to date, skipping")
+                    continue
+                info(f"  - {r}.jar ({_human(total)})")
+                got = 0
+                with open(tmp, "wb") as f:
+                    while True:
+                        chunk = resp.read(1 << 16)
+                        if not chunk:
+                            break
+                        f.write(chunk)
+                        got += len(chunk)
+                        if total:  # live progress, overwriting one line via carriage return
+                            sys.stderr.write(
+                                f"\r    {got * 100 // total:3d}%  {_human(got)} / {_human(total)}")
+                            sys.stderr.flush()
+                if total:
+                    sys.stderr.write("\n")  # finish the progress line
             tmp.replace(dest)  # atomic swap; an existing jar stays put if the download fails
         except Exception as e:
             if tmp.exists():
@@ -52,10 +76,20 @@ def download_jars(jar_dir):
             sys.exit(1)
     # bioportal-term-mcp runs from the @release git branch via uvx, which caches the resolved
     # commit; clear its cache so the next launch re-fetches the latest (a no-op on a fresh install).
+    # Best-effort: nudges uvx to re-pull the latest @release commit on next launch. It needs an
+    # exclusive cache lock, which a *running* bioportal-term-mcp server (e.g. one your LLM client
+    # already launched) holds — so a missing timeout here deadlocks the whole script. Cap it and
+    # move on: a skipped clean just means uvx reuses its cached commit, which is harmless.
     uv = shutil.which("uv")
     if uv:
-        subprocess.run([uv, "cache", "clean", "bioportal-term-mcp"],
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        try:
+            subprocess.run([uv, "cache", "clean", "bioportal-term-mcp"],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=15)
+        except subprocess.TimeoutExpired:
+            info("  ! skipped uv cache clean (cache busy — a bioportal-term-mcp server is likely "
+                 "running). Harmless; uvx will reuse its cached commit.")
+        except Exception:
+            pass
 
 
 def reuse_keys(config_path):
