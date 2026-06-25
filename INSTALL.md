@@ -1,11 +1,10 @@
-# MCP servers — install
+# Setup
 
-> One-time setup. Gets the four CEDAR MCP servers running with your LLM client so you can drive the [workflow](README.md#workflow). For *what* the servers are and *why*, see the [main README](README.md#mcp-servers).
+> One-time setup. Fork and clone the project, install the prerequisites, and get the four CEDAR MCP servers running with your LLM client so you can drive the [workflow](README.md#workflow). For *what* the servers are and *why*, see the [main README](README.md#mcp-servers).
 
-Four small MCP servers let your AI assistant work with metadata templates end to end —
-authoring them, looking up ontology terms, filling them out as forms in your browser, and saving
-them to a server. This guide gets all four running with your LLM client in three steps. Nothing to
-build or compile — you download a script, run it, and paste what it gives you.
+Follow the steps top to bottom — each has copy-paste commands. Nothing to build or compile: you fork the repo, run one script, and paste what it gives your LLM client.
+
+The four MCP servers you'll end up with:
 
 | Server | What it does | Stack |
 |---|---|---|
@@ -14,20 +13,59 @@ build or compile — you download a script, run it, and paste what it gives you.
 | [cedar-cee-mcp](https://github.com/metadatacenter/cedar-cee-mcp) | Render templates and instances as real forms in your browser, and collect what's filled in | Java |
 | [cedar-artifact-rest-mcp](https://github.com/metadatacenter/cedar-artifact-rest-mcp) | Save, fetch, and validate artifacts on a live CEDAR server | Java |
 
-Works with any MCP-capable client — tested with **Claude Desktop, Claude Code, Cursor, Windsurf,
-and Cline**. (VS Code's built-in MCP support uses a different configuration format and isn't covered here.)
+Works with any MCP-capable client — tested with **Claude Desktop, Claude Code, Cursor, Windsurf, and
+Cline**. (VS Code's built-in MCP support uses a different configuration format and isn't covered
+here.) You bring the LLM license; we don't provide one.
 
-## What you'll need
+## 1. Fork the repo and clone your fork
 
-- **An MCP-capable LLM client** (Claude, ChatGPT, Gemini, …) — you bring the license; we don't provide one.
-- **Java 17 or newer** — runs the three Java servers.
-- **[uv](https://docs.astral.sh/uv/)** — runs the Python server, and the install script below.
-- **Two free API keys** — one each from BioPortal and CEDAR (that's step 1, next).
+Fork it so you have your own copy to commit your work to, then clone that fork to your machine.
 
-## 1. Get your API keys
+```bash
+# Option A — GitHub CLI: forks and clones in one step
+gh repo fork canopy-datahub/canopy-metadata-cofest-2026 --clone
+cd canopy-metadata-cofest-2026
+```
 
-Two of the servers need a free API key, so grab both before you install. You'll give them to the
-script in step 2 (or it'll prompt you for them):
+```bash
+# Option B — plain git: click "Fork" on GitHub first, then clone YOUR fork
+git clone https://github.com/YOUR_USERNAME/canopy-metadata-cofest-2026.git
+cd canopy-metadata-cofest-2026
+```
+
+> **Do your work in [`work/`](work/).** Keep everything you produce — filled instances, your
+> domain-specific template, prompts, the lessons-learned writeup — in that folder. Run every command
+> below **from the repo root**.
+
+## 2. Install the prerequisites
+
+You need **Java 17+** (runs three of the servers) and **[uv](https://docs.astral.sh/uv/)** (runs the
+Python server and the install script).
+
+```bash
+# macOS (Homebrew)
+brew install openjdk@17 uv
+```
+
+```bash
+# Linux — uv via the official installer, Java from your package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+sudo apt-get install -y openjdk-17-jdk        # Debian/Ubuntu
+```
+
+On Windows, install [Temurin 17+](https://adoptium.net/) and [uv](https://docs.astral.sh/uv/).
+
+Verify — each prints a version, and Java must be **17 or newer**:
+
+```bash
+java -version
+uv --version
+```
+
+## 3. Get your two API keys
+
+Two of the servers need a free API key. Grab both now — you'll pass them to the script in step 4 (or
+it'll prompt you for them):
 
 - **BioPortal** (used by `bioportal-term-mcp`) — sign in, or create a free account, at
   [bioportal.bioontology.org/account](https://bioportal.bioontology.org/account); your key is shown
@@ -36,7 +74,9 @@ script in step 2 (or it'll prompt you for them):
   [cedar.metadatacenter.org](https://cedar.metadatacenter.org). Once logged in, click the person
   icon in the top-right corner to open your profile, where your API key is shown.
 
-## 2. Download the servers and create an MCP configuration file
+> **Never commit your keys.** `.gitignore` already excludes the usual files.
+
+## 4. Download the servers and create the config
 
 Run one command **from the repo root**. It downloads the four servers and prints a ready-to-paste
 configuration block for your client, with the file paths and your keys already filled in:
@@ -52,9 +92,9 @@ uv run scripts/download_mcps.py --cedar-key YOUR_CEDAR_KEY --bioportal-key YOUR_
 The configuration it produces is a small block of **JSON** — the standard way an LLM client is told
 which MCP servers exist and how to launch each one. The script writes it to
 `~/mcp/mcpServers.json` and also prints it to your screen; that's what you'll hand to your client
-in step 3.
+in step 5.
 
-## 3. Paste the MCP configuration into your client
+## 5. Paste the config into your client
 
 Add the printed block to your client's configuration file, then **restart the client**. Most
 MCP-capable clients use the same `mcpServers` JSON structure to declare their servers, so the block
@@ -80,9 +120,11 @@ On Windows, Claude Desktop is at `%APPDATA%\Claude\claude_desktop_config.json` a
 > `claude mcp add cedar-artifact --scope user -- "$(which java)" -jar "$HOME/mcp/cedar-artifact-mcp.jar"`
 > (add `--env KEY=value` for the rest/bioportal keys). The pasted block works just as well.
 
-**Check it worked.** In the client you just set up, ask the LLM (Claude, or whichever model you're
-using) to *"ping all four MCP servers."* Each one should answer — that confirms the client started
-the servers and connected to them.
+## 6. Check it worked
+
+In the client you just set up, ask the LLM (Claude, or whichever model you're using) to *"ping all
+four MCP servers."* Each one should answer — that confirms the client started the servers and
+connected to them. Now go to the [workflow](README.md#workflow).
 
 ## Updating to a new version
 
