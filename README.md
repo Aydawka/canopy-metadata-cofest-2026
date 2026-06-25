@@ -31,7 +31,7 @@ The point of the CoFest is **developing and understanding** how to drive metadat
 
 ## MCP Servers
 
-To work with CEDAR (and BioPortal) from an LLM, we use a set of handy **MCP servers** — you connect them to your LLM client and call them; there's no integration to build yourself. The four we use are listed below. Each is **self-documenting** (once connected, it advertises its own tools and parameters), and each repository's README covers setup and usage — start there.
+To work with CEDAR (and BioPortal) from an LLM, we use a set of handy **MCP servers** — you connect them to your LLM client and call them; there's no integration to build yourself. The four we use are listed below.
 
 > **What's an MCP?** The Model Context Protocol is an open standard — a universal adapter that lets an AI assistant call external tools and data sources in a uniform way. An MCP *server* exposes a specific capability (here, a slice of CEDAR or BioPortal) as a set of callable tools. Because it's a shared standard, the same servers work across MCP-capable clients — Claude, ChatGPT, and others — so you can bring whatever LLM you have a license for.
 
@@ -44,7 +44,7 @@ To work with CEDAR (and BioPortal) from an LLM, we use a set of handy **MCP serv
 
 ## Workflow
 
-The workflow has two halves: first **describe** the study with CEDAR (Steps 1–3), then **submit** it to Canopy (Step 4). Steps 1–3 each produce a CEDAR artifact; Step 4 turns those into a live study. The whole thing runs over the MCP servers, driven by an LLM.
+The workflow is four steps: fill the Canopy Study template (Step 1), design a domain-specific template (Step 2), fill it (Step 3), and create the study in Canopy (Step 4). Steps 1–3 each produce a CEDAR artifact; Step 4 turns those into a live study.
 
 ![The four-step workflow: fill the Canopy Study template, design a domain template, fill the domain template, create the study in Canopy.](images/workflow.svg)
 
@@ -110,7 +110,10 @@ These are AI-generated and entirely fictional — no real subjects or results.
 
 ## Get Going
 
-That's the whole picture: the tools are ready and the example is in your hands. Set up via the [install guide](INSTALL.md), then take the [example study](#the-example-study-we-provide) through the [workflow](#workflow) and capture what worked — exactly as described above. That writeup is the [deliverable](#the-deliverable).
+> [!IMPORTANT]
+> **Start here: install the MCP servers.** Open the **👉 [install guide](INSTALL.md)** and complete the one-time setup. You can't run the workflow until all four servers are connected to your LLM client — once they are, you're ready to work.
+
+That's the whole picture: the tools are ready and the example is in your hands. Take the example study through the workflow and capture what worked — exactly as described above. That writeup is the deliverable.
 
 Don't chase a perfect pipeline. Chase a run you can **repeat and explain**: if someone else can take your prompts and go from raw files to a registered, FAIR study, you've nailed it.
 
