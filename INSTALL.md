@@ -101,10 +101,6 @@ On Windows, Claude Desktop is at `%APPDATA%\Claude\claude_desktop_config.json` a
 > `mcpServers` entry to the file — and if an `mcpServers` section is already there, just drop these
 > four servers inside it.
 
-> **Claude Code shortcut.** Code can register a server straight from the shell, no file editing:
-> `claude mcp add cedar-artifact --scope user -- "$(which java)" -jar "$HOME/mcp/cedar-artifact-mcp.jar"`
-> (add `--env KEY=value` for the rest/bioportal keys). The pasted block works just as well.
-
 ## 6. Check that it worked
 
 In the client you just set up, ask the LLM (Claude, or whichever model you're using) to *"ping all
@@ -117,12 +113,11 @@ four MCP servers."* Each one should answer with a `pong` and its build version �
 | cedar-cee | ✅ pong | cedar-cee-mcp 0.1.17 |
 | bioportal-term | ✅ pong | bioportal-term-mcp 0.1.17 |
 
-If all four answer, the client started the servers and connected to them. Now go to the
-[workflow](README.md#workflow).
+If all four answer, the client started the servers and connected to them.
 
 ## Updating to a new version
 
-If we ship updates to the MCP servers during the hackathon, picking them up is the **same command
+If we ship updates to the MCP servers during the CoFest, picking them up is the **same command
 again** — but the order matters, because your client keeps a running copy of each server in memory.
 A running server holds onto the old jar, so you won't see the new version until the client
 relaunches it. Do it in this order:
@@ -137,10 +132,9 @@ relaunches it. Do it in this order:
 
    It pulls the newest version of each server and refreshes everything. Your configuration doesn't
    change, so there's nothing to re-paste. (If you installed the jars somewhere other than `~/mcp`
-   with `--dir`, pass that **same `--dir`** here, or the new jars land where your config isn't
-   looking: `uv run scripts/download_mcps.py --dir /your/path`.)
-3. **Restart your client**, then **ping all four again** (see [step 6](#6-check-that-it-worked)) and
-   confirm the **Build** versions went up — that's how you know you're running the new ones.
+   with `--dir`, pass that **same `--dir`** here: `uv run scripts/download_mcps.py --dir /your/path`.)
+3. **Restart your client**, then **ping all four again** and
+   confirm the **Build** versions went up.
 
 ### If something looks off
 
@@ -162,9 +156,3 @@ restart the client.
   browser and an internet connection — it won't work from a remote or headless environment.
 - **`bioportal-term-mcp`'s first launch** downloads the package once (needs internet); after that
   it starts fast and works offline.
-- **Quick check without a client** — pipe an initialize message to any Java server and you should
-  get a single line of JSON back:
-  `echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"t","version":"0"}}}' | java -jar <the-jar>`
-- **See it in action** — each server's GitHub README has an example walkthrough. Together the flow
-  is: author a template → add ontology terms → show/fill it as a form → save it.
-- **Building from source** (only if you're tinkering): each repo's README covers it.
