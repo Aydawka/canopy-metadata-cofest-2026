@@ -20,12 +20,12 @@ Today, describing a dataset for one of these hubs is largely **manual**: a perso
 
 ## Goals
 
-The point of the CoFest is **developing and understanding** how to drive metadata description with AI — not shipping a finished product. So the tangible output is **prompts, strategies, and a lessons-learned document**, not (necessarily) software. The bundled synthetic study is only an example input; whatever you develop should generalize to *any* researcher's datasets and documents.
+The point of the CoFest is **developing and understanding** how to drive metadata description with AI — not shipping a finished product. So the tangible output is **prompts, strategies, and a lessons-learned document**, not (necessarily) software. The [bundled synthetic study](data/synthetic-study) is only an example input; whatever you develop should generalize to *any* researcher's datasets and documents.
 
 1. **Drive the 4-step workflow with an LLM of your choice** — fill the Canopy Study template, design a domain-specific template, fill it, and create the study in Canopy — using the CEDAR MCP servers.
 2. **Capture the prompts and strategies that worked** — the prompts, the order of operations, what to feed the model, where it goes wrong, and how to recover. This is the primary deliverable.
 3. **Write up lessons learned** — a short document distilling what works, what doesn't, and recommendations for doing this reliably and generically.
-4. **Prove it on the example.** Run your approach against the bundled synthetic study, end-to-end.
+4. **Prove it on the example.** Run your approach against the [bundled synthetic study](data/synthetic-study), end-to-end.
 
 ---
 
@@ -52,7 +52,7 @@ The workflow is four steps: fill the Canopy Study template (Step 1), design a do
 
 In real life, the inputs are *your own* research artifacts — datasets (XLSX/CSV, relational exports) and documents (papers, protocol, grant, SOP, supplementary PDFs) — and the whole point is that the workflow reads them and describes *your* data. That's the case the approach has to handle, so it must work for any such files, not a fixed format.
 
-For this CoFest, though, you don't need to bring anything: we provide a pre-canned set of inputs — the bundled synthetic study (SPbE-2026) — so you can start immediately. It's one example dataset plus its protocol and an SOP, standing in for a real researcher's files. Use it to build and test the workflow end-to-end.
+For this CoFest, though, you don't need to bring anything: we provide a pre-canned set of inputs — [the bundled synthetic study (SPbE-2026)](data/synthetic-study) — so you can start immediately. It's one example dataset plus its protocol and an SOP, standing in for a real researcher's files. Use it to build and test the workflow end-to-end.
 
 ### Step 1 — Fill Out the Existing Canopy Study Template
 **What:** produce a filled **Canopy Study** instance from the artifacts.
