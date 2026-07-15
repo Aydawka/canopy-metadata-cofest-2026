@@ -1,8 +1,5 @@
 # Canopy: AI-Assisted Metadata Generation
 
-
-# Canopy: AI-Assisted Metadata Generation
-
 ### CollaborationFest 2026 Project - [CoFest 2026](https://www.open-bio.org/events/bosc-2026/collaborationfest/)
 
 This project is part of **[Canopy](https://github.com/canopy-datahub)**, an open-source platform for building FAIR-aligned scientific data hubs that support data sharing, harmonization, discovery, and reuse across research studies.
@@ -12,6 +9,7 @@ In Canopy, researchers organize and share data as **studies**, each consisting o
 Creating high-quality metadata is still largely a manual process. Researchers often extract information from datasets, data dictionaries, protocols, and publications, then translate it into structured metadata. This project explores AI-assisted approaches for automating parts of that process while maintaining high-quality metadata that can be used in Canopy. As a bonus part, we will also explore how this metadata can be used to populate and register studies in Canopy.
 
 ### Project Goals
+---
 
 The goal of this CoFest project is to explore reusable AI-assisted workflows for metadata generation.
 
@@ -27,10 +25,12 @@ Possible directions include:
 Before diving into the project, we'll first set up the development environment and complete a short tutorial covering the core concepts used throughout the rest of the project.
 
 ### Environment Setup
+---
 
 Before jumping into the tutorial and project, please complete the environment setup by following the instructions on [this page](https://github.com/canopy-datahub/canopy-metadata-cofest-2026/blob/main/INSTALL.md). Once everything is set up, come back here to continue.
 
 ### Tutorial
+---
 
 Before starting the project, complete this short tutorial to verify that your environment is working correctly and to become familiar with the core concepts.
 
