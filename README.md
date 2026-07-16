@@ -51,10 +51,10 @@ To complete the tutorial, you'll use the **MCP (Model Context Protocol) servers*
 | [`cedar‑artifact‑rest‑mcp`](...) | Upload, retrieve, and manage templates and instances on a CEDAR server. |
 | [`cedar‑cee‑mcp`](...) | Visualize templates and instances as interactive forms using the CEDAR Embeddable Editor. |
 
+Throughout this tutorial, you'll interact with your LLM using natural language. In most cases, the LLM will automatically choose the appropriate MCP server. If it doesn't, you can explicitly ask it to use a specific MCP based on the table above. 
 
-### Task
-
-Create a simple **publication metadata template** using the MCPs you just configured. Your template should include:
+1. Create a template
+Ask your LLM to ceate a simple **publication metadata template**. Your template should include:
 
 - Title
 - Authors (including their ORCID identifiers)
@@ -64,10 +64,15 @@ Create a simple **publication metadata template** using the MCPs you just config
 
 Once your template is complete:
 
-1. Visaulize the template using **CEE-MCP**.
-2. Find a journal article and use an LLM to generate a metadata instance for your template.
-3. Open the generated instance using **CEE-MCP** to verify that it renders correctly.
-4. Use the appropriate MCPs to upload both the template and the instance to CEDAR.
+2. Validate & visaulize
+Ask yout LLM to validate the generated template and then visualize it using the appropriate MCPs.
+3. Generate an instance
+Find any journal article and ask your LLM to populate the template for that article.
+4. Visualize
+Visualize the generated instance to verify that it renders correctly.
+5. Upload
+Upload both the template and the instance to CEDAR.
+Log into your CEDAR account and verify that both artifacts were uploaded successfully.
 
 ## Project Tasks and Example Workflow
 
