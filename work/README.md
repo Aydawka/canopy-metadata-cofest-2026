@@ -4,7 +4,7 @@ AI-assisted metadata generation for the Canopy platform (CoFest 2026).
 This README documents the pipeline built and run end-to-end for one study,
 covering **Phases 1–4**.
 
-**Study used:** `NCT07450118` — *Nested Pilot Study Comparing Two Treatments
+**Study used:**  — *Nested Pilot Study Comparing Two Treatments
 to Reduce Type 2 Diabetes Risk in At-Risk Delawareans* (University of Delaware).
 
 ---
