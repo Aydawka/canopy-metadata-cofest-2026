@@ -1,0 +1,117 @@
+type: "instance"
+name: "SPbE-2026 — Canopy Study Metadata"
+id: "https://repo.metadatacenter.org/template-instances/10fe4afe-cba0-4848-93dd-8b8cf6ccabde"
+isBasedOn: "https://repo.metadatacenter.org/templates/aff00b59-0bb7-4e40-9437-3216e5fb0ff7"
+createdOn: "2026-07-17T19:02:56-07:00"
+createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+modifiedOn: "2026-07-17T19:02:56-07:00"
+modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+children:
+  Center:
+    value: "Synthetic Data Working Group, Canopy Project"
+  Study Name:
+    value: "Effect of 12-Week Time-Restricted Eating on Glycemic Control in Prediabetic Adults: A Synthetic Pilot Study"
+  Access Level:
+    value: "Public"
+  Required Documents:
+    - value: "Data Sharing & Submission Information"
+  Estimated Number of Study Participants:
+    datatype: "xsd:decimal"
+    value: 40
+  Is it a Multi-Center Study?:
+    - value: "Multi-Center Study"
+  If multi-center study, list study sites:
+    value: "United States, Germany, Spain, Canada"
+  Data Availability:
+    - value: "Other"
+  Other Data Availability:
+    - value: "Canopy data hub"
+  Data submission timeline details:
+    value: "Protocol finalized and sites activated: Month 0. First participant enrolled: Month 1. Enrollment complete (40 participants): Month 2. Last participant week-12 visit: Month 5. Database lock and dataset assembled: Month 6. Metadata described and submitted to Canopy: Month 6."
+  PI Name:
+    value: "Jane Q. Researcher [SYNTHETIC PLACEHOLDER — not in source documents]"
+  PI Email:
+    value: "jane.researcher@example-synthetic.invalid"
+  PI Institution:
+    value: "[SYNTHETIC PLACEHOLDER — not in source documents] Synthetic Data Working Group, Canopy Project"
+  Data Submitter Name:
+    value: "Alex R. Submitter [SYNTHETIC PLACEHOLDER — not in source documents]"
+  Data Submitter Email:
+    value: "alex.submitter@example-synthetic.invalid"
+  Grant or Contract Number(s):
+    - value: "SYNTHETIC-PLACEHOLDER-0000000 (no grant/contract stated in source documents)"
+  NIH Program Officer:
+    value: "N/A — not an NIH-funded study per source documents (synthetic placeholder)"
+  NIH Institute / Center:
+    - value: "NIH OD"
+  FOA Number:
+    - value: "N/A (synthetic placeholder — no FOA stated in source documents)"
+  Study Start Date:
+    datatype: "xsd:date"
+    value: "2026-01-07"
+  Study End Date:
+    datatype: "xsd:date"
+    value: "2026-05-26"
+  Study Domain:
+    - value: "Health Behaviors"
+  Other Domain, Specify:
+    - value: "Time-restricted eating (chrono-nutrition) and glycemic control in prediabetes"
+  Data Collection Methods:
+    - value: "Survey"
+  Other Data Collection Methods:
+    - value: "Venous blood draw and clinical laboratory assay (fasting plasma glucose, HbA1c) per SOP SPbE-2026-SOP-001; anthropometry; blood pressure measurement"
+  Study Population Focus:
+    - value: "Adults"
+  Primary Publication URL:
+    - id: "https://pubmed.ncbi.nlm.nih.gov/31813466/"
+  Study Design:
+    - value: "Interventional or Clinical Trial"
+  Species:
+    - value: "Human"
+  Sample Collection:
+    - value: "Prospective Sample"
+  Data Types:
+    - value: "Clinical"
+    - value: "Biologic Specimens"
+    - value: "Questionnaire or Survey"
+    - value: "Behavioral"
+  Genomic Data Types:
+    - value: "Other"
+  Other Genomic Data Types:
+    - value: "N/A — no genomic data collected in this study"
+  Phenotypes:
+    - value: "Other"
+  Other Phenotypes:
+    - value: "N/A — no phenotype/genomic data collected in this study"
+  Sample Types:
+    - value: "Other"
+  Other Sample Types:
+    - value: "Venous blood (plasma/whole blood) for fasting glucose and HbA1c assay; not a genomic sample type"
+  Genotypes:
+    - value: "Other"
+  Other Genotypes:
+    - value: "N/A — no genotyping performed in this study"
+  Sequencing Data Types:
+    - value: "Other"
+  Other Sequencing Data Types:
+    - value: "N/A — no sequencing performed in this study"
+  Genomic Analyses Types:
+    - value: "Other"
+  Other Genomic Analyses Types:
+    - value: "N/A — no genomic analyses performed in this study"
+  Genomic Array Data Types:
+    - value: "Other"
+  Other Genomic Array Data Types:
+    - value: "N/A — no array data collected in this study"
+  Acknowledgment Statement:
+    value: "This is a fully synthetic pilot study (SPbE-2026), sponsored by the Synthetic Data Working Group, Canopy Project, created for the ISMB/ECCB CollaborationFest AI-assisted metadata generation exercise. No human subjects were enrolled and no real data are reported; no real funding source is acknowledged. [SYNTHETIC PLACEHOLDER — no acknowledgment text was provided in the source documents]"
+  Study Description:
+    value: "A two-arm, parallel-group, randomized pilot trial evaluating whether a 10-hour time-restricted eating (TRE) window improves glycemic control, relative to habitual eating, in adults aged 40-65 with prediabetes. Forty participants were enrolled 1:1 across four sites (United States, Germany, Spain, Canada) and followed for 12 weeks. The primary endpoint is change in fasting plasma glucose from baseline to week 12; secondary endpoints include HbA1c, body weight/BMI, systolic blood pressure, adherence, and safety. As a pilot, the study is not powered for confirmatory hypothesis testing but is intended to estimate effect sizes and feasibility to inform a larger confirmatory trial. All data in this submission are synthetic and fictional, generated for the ISMB/ECCB CollaborationFest AI-assisted metadata generation exercise (protocol SPbE-2026, v1.0)."
+  General Research Use:
+    - value: "Not-for-profit Organization"
+  Health/Medical/Biomedical:
+    - value: "Health or Biomedical Purpose"
+  Conditions/Diseases:
+    - value: "Not-for-profit Organization"
+  Related Conditions:
+    value: "Prediabetes (MONDO:0006920)"
