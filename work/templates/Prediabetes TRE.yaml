@@ -1,0 +1,297 @@
+type: "template"
+name: "Prediabetes TRE Trial — Subject Record Template"
+description: "Domain-specific metadata template for subject-level records from the \"Effect of 12-Week Time-Restricted Eating on Glycemic Control in Prediabetic Adults\" synthetic pilot study (SPbE-2026). Models one subject's row of the study dataset: identification, demographics, study design, clinical measurements, compliance/safety, and study provenance."
+id: "https://repo.metadatacenter.org/templates/a8329cd0-5f4c-4ee9-a546-a1d5b48f30ed"
+status: "draft"
+version: "0.0.1"
+modelVersion: "1.6.0"
+createdOn: "2026-07-17T19:12:18-07:00"
+createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+modifiedOn: "2026-07-17T19:12:18-07:00"
+modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+children:
+  - key: "Subject Identification"
+    type: "element"
+    name: "Subject Identification"
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "Subject ID"
+        type: "text-field"
+        name: "Subject ID"
+        description: "Unique identifier for the study subject (e.g. SUBJ-001)."
+        modelVersion: "1.6.0"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Subject+ID"
+      - key: "Enrollment Date"
+        type: "temporal-field"
+        name: "Enrollment Date"
+        description: "Date the subject was enrolled in the study."
+        modelVersion: "1.6.0"
+        datatype: "xsd:date"
+        granularity: "day"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Enrollment+Date"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Subject+Identification"
+  - key: "Demographics"
+    type: "element"
+    name: "Demographics"
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "Age"
+        type: "numeric-field"
+        name: "Age"
+        description: "Subject age in years at enrollment."
+        modelVersion: "1.6.0"
+        datatype: "xsd:int"
+        minValue: 0
+        unit: "years"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Age"
+      - key: "Sex"
+        type: "controlled-term-field"
+        name: "Sex"
+        description: "Biological sex of the subject."
+        modelVersion: "1.6.0"
+        datatype: "iri"
+        values:
+          - type: "branch"
+            ontologyName: "NCI Thesaurus"
+            acronym: "NCIT"
+            termLabel: "Sex"
+            iri: "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C28421"
+            maxDepth: 0
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Sex"
+      - key: "Country"
+        type: "controlled-term-field"
+        name: "Country"
+        description: "Country of the study site at which the subject was enrolled."
+        modelVersion: "1.6.0"
+        datatype: "iri"
+        values:
+          - type: "ontology"
+            acronym: "GAZ"
+            ontologyName: "Gazetteer"
+            iri: "http://purl.obolibrary.org/obo/gaz.owl"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Country"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Demographics"
+  - key: "Study Design"
+    type: "element"
+    name: "Study Design"
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "Condition"
+        type: "controlled-term-field"
+        name: "Condition"
+        description: "Medical condition under study for this subject."
+        modelVersion: "1.6.0"
+        datatype: "iri"
+        values:
+          - type: "branch"
+            ontologyName: "Mondo Disease Ontology"
+            acronym: "MONDO"
+            termLabel: "disease"
+            iri: "http://purl.obolibrary.org/obo/MONDO_0000001"
+            maxDepth: 0
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Condition"
+      - key: "Study Arm"
+        type: "controlled-term-field"
+        name: "Study Arm"
+        description: "Study arm to which the subject was assigned (e.g. control, time-restricted eating)."
+        modelVersion: "1.6.0"
+        datatype: "iri"
+        values:
+          - type: "branch"
+            ontologyName: "NCI Thesaurus"
+            acronym: "NCIT"
+            termLabel: "Study Arm"
+            iri: "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C174447"
+            maxDepth: 0
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Study+Arm"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Study+Design"
+  - key: "Clinical Measurements"
+    type: "element"
+    name: "Clinical Measurements"
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "BMI"
+        type: "numeric-field"
+        name: "BMI"
+        description: "Body mass index at baseline (NCIT:C16358), unit kg/m^2 (UO:0000077)."
+        modelVersion: "1.6.0"
+        datatype: "xsd:decimal"
+        decimalPlaces: 1
+        unit: "kg/m^2"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/BMI"
+      - key: "Baseline Glucose"
+        type: "numeric-field"
+        name: "Baseline Glucose"
+        description: "Fasting blood glucose at baseline (NCIT:C105585), mg/dL."
+        modelVersion: "1.6.0"
+        datatype: "xsd:int"
+        unit: "mg/dL"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Baseline+Glucose"
+      - key: "Week 12 Glucose"
+        type: "numeric-field"
+        name: "Week 12 Glucose"
+        description: "Fasting blood glucose at week 12 (NCIT:C105585), mg/dL. May be unset for subjects who did not complete the study."
+        modelVersion: "1.6.0"
+        datatype: "xsd:int"
+        unit: "mg/dL"
+        configuration:
+          propertyIri: "https://schema.metadatacenter.org/properties/Week+12+Glucose"
+      - key: "HbA1c"
+        type: "numeric-field"
+        name: "HbA1c"
+        description: "Hemoglobin A1c percentage (NCIT:C64849)."
+        modelVersion: "1.6.0"
+        datatype: "xsd:decimal"
+        decimalPlaces: 1
+        unit: "%"
+        configuration:
+          propertyIri: "https://schema.metadatacenter.org/properties/HbA1c"
+      - key: "Systolic Blood Pressure"
+        type: "numeric-field"
+        name: "Systolic Blood Pressure"
+        description: "Systolic blood pressure at baseline (NCIT:C25298), mmHg."
+        modelVersion: "1.6.0"
+        datatype: "xsd:int"
+        unit: "mmHg"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Systolic+Blood+Pressure"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Clinical+Measurements"
+  - key: "Compliance and Safety"
+    type: "element"
+    name: "Compliance and Safety"
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "On Glucose Medication"
+        type: "radio-field"
+        name: "On Glucose Medication"
+        description: "Whether the subject was on glucose-lowering medication at enrollment."
+        modelVersion: "1.6.0"
+        values:
+          - label: "True"
+          - label: "False"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/On+Glucose+Medication"
+      - key: "Adverse Event"
+        type: "radio-field"
+        name: "Adverse Event"
+        description: "Whether an adverse event was recorded for the subject (NCIT:C41331)."
+        modelVersion: "1.6.0"
+        values:
+          - label: "True"
+          - label: "False"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Adverse+Event"
+      - key: "Completed Study"
+        type: "radio-field"
+        name: "Completed Study"
+        description: "Whether the subject completed the full 12-week study."
+        modelVersion: "1.6.0"
+        values:
+          - label: "True"
+          - label: "False"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Completed+Study"
+      - key: "Visit Date"
+        type: "temporal-field"
+        name: "Visit Date"
+        description: "Date of the subject's final study visit."
+        modelVersion: "1.6.0"
+        datatype: "xsd:date"
+        granularity: "day"
+        configuration:
+          propertyIri: "https://schema.metadatacenter.org/properties/Visit+Date"
+      - key: "Adherence"
+        type: "numeric-field"
+        name: "Adherence"
+        description: "Percentage adherence to the assigned eating-window protocol (0-100)."
+        modelVersion: "1.6.0"
+        datatype: "xsd:decimal"
+        minValue: 0
+        maxValue: 100
+        unit: "%"
+        configuration:
+          propertyIri: "https://schema.metadatacenter.org/properties/Adherence"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Compliance+and+Safety"
+  - key: "Study Provenance"
+    type: "element"
+    name: "Study Provenance"
+    description: "External identifiers linking the record to the investigator, protocol, and reference publication."
+    modelVersion: "1.6.0"
+    createdOn: "2026-07-17T19:12:18-07:00"
+    createdBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    modifiedOn: "2026-07-17T19:12:18-07:00"
+    modifiedBy: "https://metadatacenter.org/users/8a163f13-2797-4de8-89d5-978edf9a31ee"
+    children:
+      - key: "Investigator ORCID"
+        type: "ext-orcid-field"
+        name: "Investigator ORCID"
+        description: "ORCID identifier of the study investigator responsible for the subject's data."
+        modelVersion: "1.6.0"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Investigator+ORCID"
+      - key: "Reference PMID"
+        type: "ext-pubmed-field"
+        name: "Reference PMID"
+        description: "PubMed identifier of the reference publication associated with the study protocol."
+        modelVersion: "1.6.0"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Reference+PMID"
+      - key: "Protocol DOI"
+        type: "ext-doi-field"
+        name: "Protocol DOI"
+        description: "DOI of the study protocol document."
+        modelVersion: "1.6.0"
+        configuration:
+          required: true
+          propertyIri: "https://schema.metadatacenter.org/properties/Protocol+DOI"
+    configuration:
+      propertyIri: "https://schema.metadatacenter.org/properties/Study+Provenance"
